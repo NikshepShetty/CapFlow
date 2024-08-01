@@ -1,0 +1,10 @@
+version: '3'
+services:
+  caption-api:
+    build: ./caption-model-api
+    ports:
+      - "5000:5000"
+  chrome-extension:
+    build: ./browser-extension
+    volumes:
+      - ./browser-extension:/app
