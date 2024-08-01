@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-CapFlow is a Chrome extension that leverages advanced AI models to generate captions for images on web pages and create relevant hashtags. The project demonstrates proficiency in full-stack development, AI integration, and containerization technologies.
+CapFlow is a Chrome extension that uses tine fine-tuned versions Microsoft's Florence 2 base model to generate descriptive captions for images on web pages and create relevant hashtags. 
 
 
 ## Technologies Used
@@ -20,18 +20,20 @@ CapFlow is a Chrome extension that leverages advanced AI models to generate capt
 2. **Flask Backend**: Hosts the AI models and provides an API for the extension.
 3. **Advanced AI Models**: 
    - Utilizes Microsoft's Florence-2-base-ft model with custom fine-tuned adapters for image captioning.
-   - Employs a separate model for generating relevant hashtags from captions.
+   - [Placeholder for text to hashtag]
 4. **Docker Integration**: Demonstrates containerization skills for easy deployment and scalability.
 
 ## AI Model Details
 
 ### Image Captioning Model
 
-The image captioning function in `app.py` uses Microsoft's Florence-2-base-ft, a 230 million parameter Vision Language Model. This base model is enhanced with three fine-tuned LoRA (Low-Rank Adaptation) adapters, each trained on separate datasets:
+The image captioning function in `app.py` uses Microsoft's Florence-2-base-ft, a 232 million parameter Vision Language Model. This base model is enhanced with three fine-tuned LoRA (Low-Rank Adaptation) adapters, each trained on separate datasets:
 
 1. DOCCI adapter
 2. Pixelprose adapter
 3. Recap DataComp adapter
+
+We checked the performance of these adapters, both individually and all possible combinations of these adapters with the base model, based on which we selected the DOCCI adapter as the sole adapter for this project.  
 
 ### Hashtag Generation Model
 
@@ -42,6 +44,8 @@ The hashtag generation function in `app.py` takes the captions produced by the i
 ## Performance Metrics
 
 ### Image Captioning Model
+
+For the evaluation of these model adapters, we used 4 traditional metrics, METEOR, BLEU, ROUGE-L and CIDEr, and 1 new metric which is specifically designed to evaluate long descriptive captions, CAPTURE.
 
 Below are the performance metrics for various configurations of the image captioning model:
 
@@ -55,14 +59,11 @@ Below are the performance metrics for various configurations of the image captio
 | DOCCI + DataComp | 0.2616 | 0.1847 | 0.2981 | 0.0623 | 0.5637 |
 | All Adapters Combined | 0.2230 | 0.1382 | 0.2723 | 0.0321 | 0.5242 |
 
+Based on these results
 
 ### Hashtag Generation Model
 
 [Evaluation metrics to be added]
-
-# CapFlow: Image Captioning and Hashtag Generation Chrome Extension
-
-[Previous sections remain unchanged]
 
 ## Setup and Installation
 
