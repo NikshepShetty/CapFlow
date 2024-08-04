@@ -68,7 +68,9 @@ Based on these results
 | LLAVA-mistral       | 0.3346 | 0.2754 | 0.3231  | 0.0883 | 0.5674  |
 | Phi-3-vision        | 0.3144 | 0.2359 | 0.3230  | 0.0955 | 0.5509  |
 | Base Florence model | 0.2128 | 0.1100 | 0.2753  | 0.0312 | 0.5458  |
-##| Our Extension       | 0.2671 | 0.1850 | 0.2874  | 0.0863 | 0.5757  |
+| Our Extension       | 0.2671 | 0.1850 | 0.2874  | 0.0863 | 0.5757  |
+
+![SpeedTest](https://github.com/user-attachments/assets/fe754587-e57d-47ee-b675-ac8cccd1a3c4)
 
 ### Hashtag Generation Model
 
