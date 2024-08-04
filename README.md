@@ -62,7 +62,7 @@ Below are the performance metrics for various configurations of the image captio
 Based on these results
 
 
-| Model               | METEOR | BLEU   | ROUGE-L | CIDEr  | CAPTURE |
+| Model               | METEOR | BLEU   | ROUGE-L | CIDEr  | CAPTURE | 
 |---------------------|--------|--------|---------|--------|---------|
 | Paligemma           | 0.1242 | 0.0530 | 0.1947  | 0.0157 | 0.4038  |
 | LLAVA-mistral       | 0.3346 | 0.2754 | 0.3231  | 0.0883 | 0.5674  |
@@ -70,7 +70,21 @@ Based on these results
 | Base Florence model | 0.2128 | 0.1100 | 0.2753  | 0.0312 | 0.5458  |
 | Our Extension       | 0.2671 | 0.1850 | 0.2874  | 0.0863 | 0.5757  |
 
+
+| Model               | CAPTURE | Avg Time (in sec)   |
+|---------------------|--------|--------|
+| Paligemma           | 0.4038 | 1.201 |
+| LLAVA-mistral       | 0.5674 | 17.983 |
+| Phi-3-vision        | 0.5509 | 7.358 |
+| Base Florence model | 0.5458 | 0.523 |
+| Our Extension       | 0.5757 | 0.688 |
+
+
 ![SpeedTest](https://github.com/user-attachments/assets/fe754587-e57d-47ee-b675-ac8cccd1a3c4)
+
+![SpeedvsCapture](https://github.com/user-attachments/assets/dbc48be0-d69d-444c-a5df-14bb1fe1e865)
+
+
 
 ### Hashtag Generation Model
 
