@@ -61,6 +61,15 @@ Below are the performance metrics for various configurations of the image captio
 
 Based on these results
 
+
+| Model               | METEOR | BLEU   | ROUGE-L | CIDEr  | CAPTURE |
+|---------------------|--------|--------|---------|--------|---------|
+| Paligemma           | 0.1242 | 0.0530 | 0.1947  | 0.0157 | 0.4038  |
+| LLAVA-mistral       | 0.3346 | 0.2754 | 0.3231  | 0.0883 | 0.5674  |
+| Phi-3-vision        | 0.3144 | 0.2359 | 0.3230  | 0.0955 | 0.5509  |
+| Base Florence model | 0.2128 | 0.1100 | 0.2753  | 0.0312 | 0.5458  |
+##| Our Extension       | 0.2671 | 0.1850 | 0.2874  | 0.0863 | 0.5757  |
+
 ### Hashtag Generation Model
 
 [Evaluation metrics to be added]
