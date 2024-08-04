@@ -27,11 +27,14 @@ CapFlow is a Chrome extension that uses tine fine-tuned versions Microsoft's Flo
 
 ### Image Captioning Model
 
-The image captioning function in `app.py` uses Microsoft's Florence-2-base-ft, a 232 million parameter Vision Language Model. This base model is enhanced with three fine-tuned LoRA (Low-Rank Adaptation) adapters, each trained on separate datasets:
+The image captioning function in `app.py` uses Microsoft's Florence-2-base-ft, a 232 million parameter Vision Language Model. It is vision foundation model designed to handle a wide range of computer vision and vision-language tasks using a unified, prompt-based representation. It can perform tasks such as captioning, object detection, grounding, and segmentation by interpreting text prompts and generating text outputs. Florence-2’s training leveraged FLD-5B, a dataset with 5.4 billion annotations across 126 million images, created through automated image annotation and model refinement(Xiao et al., 2024). For this project, we used Florence-2's detailed image captioning functionality using the <MORE_DETAILED_CAPTION> special tag.
+
+This base Florence model was the fine-tuned using three seperated datasets using LoRA (Low-Rank Adaptation), to creat three LoRA adapters:
 
 1. DOCCI adapter
 2. Pixelprose adapter
 3. Recap DataComp adapter
+
 
 We checked the performance of these adapters, both individually and all possible combinations of these adapters with the base model, based on which we selected the DOCCI adapter as the sole adapter for this project.  
 
@@ -155,3 +158,7 @@ The CapFlow extension should now be installed and ready to use.
 3. Use the extension interface to select an image on the page.
 4. The extension will send the image to the backend for processing.
 5. View the generated caption and hashtags in the extension popup.
+
+
+# References
+1. Xiao, B., Wu, H., Xu, W., Dai, X., Hu, H., Lu, Y., Zeng, M., Liu, C. and Yuan, L., 2024. Florence-2: Advancing a unified representation for a variety of vision tasks. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 4818-4829).
