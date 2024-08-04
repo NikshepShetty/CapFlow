@@ -35,8 +35,9 @@ This base Florence model was the fine-tuned using three seperated datasets using
 2. Pixelprose adapter
 3. Recap DataComp adapter
 
+We used LoRA, which freezes the pretrained model weights and injects trainable rank decomposition matrices into different layers of the model. This approach reduces the number of trainable parameters for downstream tasks, which in turn decreases both the time required to fine-tune the model and the computational requirements(Hu et al., 2021). Huggingface provides a lot of documentation on LoRA and other PEFT models that aim to reduce resources required to train various deep learning models while retaining most of the performance (https://huggingface.co/docs/peft/index) 
 
-We checked the performance of these adapters, both individually and all possible combinations of these adapters with the base model, based on which we selected the DOCCI adapter as the sole adapter for this project.  
+We checked the performance of these adapters, both individually and all possible combinations of these adapters with the base model, based on which we selected the DOCCI adapter as the sole adapter for this project. These results can be found in the performance metrics section below.
 
 ### Hashtag Generation Model
 
@@ -161,4 +162,5 @@ The CapFlow extension should now be installed and ready to use.
 
 
 # References
-1. Xiao, B., Wu, H., Xu, W., Dai, X., Hu, H., Lu, Y., Zeng, M., Liu, C. and Yuan, L., 2024. Florence-2: Advancing a unified representation for a variety of vision tasks. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 4818-4829).
+1. Hu, E.J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L. and Chen, W., 2021. Lora: Low-rank adaptation of large language models. arXiv preprint arXiv:2106.09685.
+2. Xiao, B., Wu, H., Xu, W., Dai, X., Hu, H., Lu, Y., Zeng, M., Liu, C. and Yuan, L., 2024. Florence-2: Advancing a unified representation for a variety of vision tasks. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 4818-4829).
