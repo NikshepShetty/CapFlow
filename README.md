@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-CapFlow is a Chrome extension that uses tine fine-tuned versions Microsoft's Florence 2 base model to generate descriptive captions for images on web pages and create relevant hashtags. 
+CapFlow is a Chrome extension that uses the fine-tuned version of Microsoft's Florence 2 base model to generate descriptive captions for images on web pages and create relevant hashtags. 
 
 
 ## Technologies Used
@@ -27,9 +27,9 @@ CapFlow is a Chrome extension that uses tine fine-tuned versions Microsoft's Flo
 
 ### Image Captioning Model
 
-The image captioning function in `app.py` uses Microsoft's Florence-2-base-ft, a 232 million parameter Vision Language Model. It is vision foundation model designed to handle a wide range of computer vision and vision-language tasks using a unified, prompt-based representation. It can perform tasks such as captioning, object detection, grounding, and segmentation by interpreting text prompts and generating text outputs. Florence-2’s training leveraged FLD-5B, a dataset with 5.4 billion annotations across 126 million images, created through automated image annotation and model refinement(Xiao et al., 2024). For this project, we used Florence-2's detailed image captioning functionality using the <MORE_DETAILED_CAPTION> special tag.
+The image captioning function in `app.py` uses Microsoft's Florence-2-base-ft, a 232 million parameter Vision Language Model. It is a vision foundation model designed to handle a wide range of computer vision and vision-language tasks using a unified, prompt-based representation. It can perform tasks such as captioning, object detection, grounding, and segmentation by interpreting text prompts and generating text outputs. Florence-2’s training leveraged FLD-5B, a dataset with 5.4 billion annotations across 126 million images, created through automated image annotation and model refinement(Xiao et al., 2024). For this pWe used Florence-2's detailed image captioning functionality for this project <MORE_DETAILED_CAPTION> special tag.
 
-This base Florence model was the fine-tuned using three seperated datasets using LoRA (Low-Rank Adaptation), to creat three LoRA adapters:
+This base Florence model was the fine-tuned using three seperate datasets using LoRA (Low-Rank Adaptation), to creat three LoRA adapters:
 
 1. DOCCI adapter
 2. Pixelprose adapter
@@ -49,9 +49,20 @@ The hashtag generation function in `app.py` takes the captions produced by the i
 
 ### Image Captioning Model
 
-For the evaluation of these model adapters, we used 4 traditional metrics, METEOR, BLEU, ROUGE-L and CIDEr, and 1 new metric which is specifically designed to evaluate long descriptive captions, CAPTURE.
+For the evaluation of these model adapters, we used 4 traditional metrics, METEOR, BLEU, ROUGE-L and CIDEr, and one new metric which is specifically designed to evaluate long descriptive captions, CAPTURE.
 
-Below are the performance metrics for various configurations of the image captioning model:
+The CAPTURE (CAPtion evaluation by exTracing and coUpling coRE information) metric is designed to evaluate detailed image captions more reliably than existing methods. It works by extracting visual elements - objects, attributes, and relations - from both the generated and reference captions using a T5-based Factual parser. It then applies a stop words filter to focus on tangible elements. It employs a three-stage matching process: exact matching for identical elements, synonym matching using WordNet for similar meanings, and soft matching using Sentence BERT embeddings for remaining elements. CAPTURE calculates precision and recall for each type of visual element, combines these into F1 scores, and produces a final weighted score. This approach allows CAPTURE to assess caption quality while being robust to variations in writing style. The CAPTURE Metric score is calculated as:
+
+$$ \text{Score} = \frac{5 \cdot F1_{obj} + 5 \cdot F1_{attr} + 2 \cdot F1_{rel}}{5 + 5 + 2} $$
+
+Where:
+- $F1_{obj}$ is the F1 score for objects
+- $F1_{attr}$ is the F1 score for attributes
+- $F1_{rel}$ is the F1 score for relations
+
+The authors of the original CAPTURE paper demonstrate that it achieves higher consistency with human judgments compared to other caption evaluation metrics, making it a valuable tool for assessing and improving LVLM performance in detail image captioning tasks(Dong et al., 2024).
+
+Below are the performance metrics for various configurations of the image captioning model, which were fine-tuned by us, compared to the base model:
 
 | Model Configuration | METEOR | BLEU | ROUGE-L | CIDEr | CAPTURE |
 |---------------------|--------|------|---------|-------|---------|
@@ -61,19 +72,33 @@ Below are the performance metrics for various configurations of the image captio
 | Recap DataComp Adapter | 0.2397 | 0.1501 | 0.2942 | 0.0348 | 0.5530 |
 | DOCCI + Pixelprose | 0.2532 | 0.1753 | 0.2809 | 0.0589 | 0.5425 |
 | DOCCI + DataComp | 0.2616 | 0.1847 | 0.2981 | 0.0623 | 0.5637 |
+| Pixelprose + DataComp | 0.2066 | 0.1110 | 0.2734 | 0.0149 | 0.5237 |
 | All Adapters Combined | 0.2230 | 0.1382 | 0.2723 | 0.0321 | 0.5242 |
 
-Based on these results
+Based on these results, we observed that the DOCCI adapter increased the performance of the model for the captioning task the most across most traditional metrics and, more importantly, for the CAPTURE metric. Another important observation is how each adapter individually outperforms the base Florence-2 model, but overall combination of the three produces worse results. These results showcase how the quality of DOCCI dataset can vastly improve the performance of descriptive image captioning task.
+
+We compare our DOCCI adapted model to some of the new Vision Language Models(VLMs) that have been released recently.
 
 
 | Model               | METEOR | BLEU   | ROUGE-L | CIDEr  | CAPTURE | 
 |---------------------|--------|--------|---------|--------|---------|
-| Paligemma           | 0.1242 | 0.0530 | 0.1947  | 0.0157 | 0.4038  |
-| LLAVA-mistral       | 0.3346 | 0.2754 | 0.3231  | 0.0883 | 0.5674  |
-| Phi-3-vision        | 0.3144 | 0.2359 | 0.3230  | 0.0955 | 0.5509  |
-| Base Florence model | 0.2128 | 0.1100 | 0.2753  | 0.0312 | 0.5458  |
-| Our Extension       | 0.2671 | 0.1850 | 0.2874  | 0.0863 | 0.5757  |
+| Paligemma-3b-mix-448 | 0.1242 | 0.0530 | 0.1947  | 0.0157 | 0.4038  |
+| Llava-v1.6-mistral-7b-hf | 0.3346 | 0.2754 | 0.3231  | 0.0883 | 0.5674  |
+| Phi-3-vision-128k-instruct | 0.3144 | 0.2359 | 0.3230  | 0.0955 | 0.5509  |
+| Base Florence-2 model | 0.2128 | 0.1100 | 0.2753  | 0.0312 | 0.5458  |
+| Our Model | 0.2671 | 0.1850 | 0.2874  | 0.0863 | 0.5757  |
 
+For its size of only 232 Million parameters, the base Florence-2 model (microsoft/Florence-2-base-ft) performs incredibly well against a much larger model like Llava-mistral with 7 Billion parameter. Even though it gets beaten by both Llava-mistral and phi-3-vision (4.2B paramaters), it gets extremely close. With the help of our fine-tuned DOCCI adapter, we were able to outperform these models. In comparision, the Paligemma (3B parameter) model really falls behind the others, though its important to note that this model is geared towards more research oriented studied and Google recommends fine-tuning it for specific tasks.
+
+As a browser extension, speed is very important. We recorded the time taken for caption generation by each of the previously mentioned models over 100 images. The results are shown below.
+
+![SpeedTest](https://github.com/user-attachments/assets/fe754587-e57d-47ee-b675-ac8cccd1a3c4)
+
+It is not surprising that due to its smaller size, both the base Florence-2 model and our adapter built on top of it show remarkably quick times below one second. The PaliGemma model, being a small model itself, is also very quick, in fact, it is quicker on average than both Florence-2 and our model. However, it is inconsistent as it occasionally reaches the 3-second mark for some samples. The Phi-3-Vision model, with its 4.2B parameters, performs decently in terms of speed but lags in comparison. The Llava-mistral model, being the largest, was significantly off the mark. Additionally, the Llava-mistral model is extremely difficult to run on consumer-grade hardware and would require expensive cloud servers if we were to deploy this extension.
+
+For the speed-to-performance ratio, our model performs best out of all the models we have tested. With only a slight increase in processing time, we achieve a significant improvement in performance compared to the base Florence model. The chart below showcases how it outperforms significantly larger models in detailed image captioning tasks while taking only a fraction of the time. This would likely result in higher user satisfaction due to quicker loading times, while also reducing processing and storage costs on cloud infrastructure.
+
+![SpeedvsCapture](https://github.com/user-attachments/assets/dbc48be0-d69d-444c-a5df-14bb1fe1e865)
 
 | Model               | CAPTURE | Avg Time (in sec)   |
 |---------------------|--------|--------|
@@ -81,12 +106,7 @@ Based on these results
 | LLAVA-mistral       | 0.5674 | 17.983 |
 | Phi-3-vision        | 0.5509 | 7.358 |
 | Base Florence model | 0.5458 | 0.523 |
-| Our Extension       | 0.5757 | 0.688 |
-
-
-![SpeedTest](https://github.com/user-attachments/assets/fe754587-e57d-47ee-b675-ac8cccd1a3c4)
-
-![SpeedvsCapture](https://github.com/user-attachments/assets/dbc48be0-d69d-444c-a5df-14bb1fe1e865)
+| Our Model      | 0.5757 | 0.688 |
 
 
 
@@ -162,5 +182,7 @@ The CapFlow extension should now be installed and ready to use.
 
 
 # References
-1. Hu, E.J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L. and Chen, W., 2021. Lora: Low-rank adaptation of large language models. arXiv preprint arXiv:2106.09685.
-2. Xiao, B., Wu, H., Xu, W., Dai, X., Hu, H., Lu, Y., Zeng, M., Liu, C. and Yuan, L., 2024. Florence-2: Advancing a unified representation for a variety of vision tasks. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 4818-4829).
+
+1. Dong, H., Li, J., Wu, B., Wang, J., Zhang, Y. and Guo, H., 2024. Benchmarking and Improving Detail Image Caption. arXiv preprint arXiv:2405.19092.
+2. Hu, E.J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L. and Chen, W., 2021. Lora: Low-rank adaptation of large language models. arXiv preprint arXiv:2106.09685.
+3. Xiao, B., Wu, H., Xu, W., Dai, X., Hu, H., Lu, Y., Zeng, M., Liu, C. and Yuan, L., 2024. Florence-2: Advancing a unified representation for a variety of vision tasks. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 4818-4829).
