@@ -4,6 +4,22 @@
 
 CapFlow is a Chrome extension that uses the fine-tuned version of Microsoft's Florence 2 base model to generate descriptive captions for images on web pages and create relevant hashtags. 
 
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Technologies Used](#technologies-used)
+- [Key Features](#key-features)
+- [AI Model Details](#ai-model-details)
+  - [Image Captioning Model](#image-captioning-model)
+  - [Hashtag Generation Model](#hashtag-generation-model)
+- [Performance Metrics](#performance-metrics)
+  - [Image Captioning Model](#image-captioning-model-1)
+  - [Hashtag Generation Model](#hashtag-generation-model-1)
+- [Setup and Installation](#setup-and-installation)
+  - [Option 1: Using Docker](#option-1-using-docker)
+  - [Option 2: Local Setup with Virtual Environment](#option-2-local-setup-with-virtual-environment)
+  - [Chrome Extension Setup](#chrome-extension-setup)
+- [Usage](#usage)
+- [References](#references)
 
 ## Technologies Used
 
@@ -108,11 +124,10 @@ For the speed-to-performance ratio, our model performs best out of all the model
 | Base Florence model | 0.5458 | 0.523 |
 | Our Model      | 0.5757 | 0.688 |
 
-
-
 ### Hashtag Generation Model
 
 [Evaluation metrics to be added]
+
 
 ## Setup and Installation
 
@@ -162,7 +177,7 @@ This will start both the caption-api service on port 5000 and set up the chrome-
 
 The API will be available at `http://localhost:5000`.
 
-## Chrome Extension Setup
+### Chrome Extension Setup
 
 After setting up the backend (either through Docker or locally):
 
@@ -181,7 +196,7 @@ The CapFlow extension should now be installed and ready to use.
 5. View the generated caption and hashtags in the extension popup.
 
 
-# References
+## References
 
 1. Dong, H., Li, J., Wu, B., Wang, J., Zhang, Y. and Guo, H., 2024. Benchmarking and Improving Detail Image Caption. arXiv preprint arXiv:2405.19092.
 2. Hu, E.J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L. and Chen, W., 2021. Lora: Low-rank adaptation of large language models. arXiv preprint arXiv:2106.09685.
