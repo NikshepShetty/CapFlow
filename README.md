@@ -1,9 +1,5 @@
 # CapFlow: Image Captioning and Hashtag Generation Chrome Extension
 
-## Project Overview
-
-CapFlow is a Chrome extension that uses the fine-tuned version of Microsoft's Florence 2 base model to generate descriptive captions for images on web pages and create relevant hashtags. 
-
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Technologies Used](#technologies-used)
@@ -20,6 +16,10 @@ CapFlow is a Chrome extension that uses the fine-tuned version of Microsoft's Fl
   - [Chrome Extension Setup](#chrome-extension-setup)
 - [Usage](#usage)
 - [References](#references)
+
+## Project Overview
+
+CapFlow is a Chrome extension that uses the fine-tuned version of Microsoft's Florence 2 base model to generate descriptive captions for images on web pages and create relevant hashtags. 
 
 ## Technologies Used
 
