@@ -27,7 +27,7 @@ CapFlow is a Chrome extension that uses the fine-tuned version of Microsoft's Fl
 - Backend: Flask (Python)
 - AI Models:
   - Image Captioning: Microsoft Florence-2-base-ft (230 million parameter Vision Language Model)
-  - Hashtag Generation: [Model details to be added]
+  - Hashtag Generation: [Model details to be added soon]
 - Containerization: Docker
 
 ## Key Features
@@ -36,7 +36,7 @@ CapFlow is a Chrome extension that uses the fine-tuned version of Microsoft's Fl
 2. **Flask Backend**: Hosts the AI models and provides an API for the extension.
 3. **Advanced AI Models**: 
    - Utilizes Microsoft's Florence-2-base-ft model with custom fine-tuned adapters for image captioning.
-   - [Placeholder for text to hashtag]
+   - [Caption to hashtag model details to be added soon]
 4. **Docker Integration**: Demonstrates containerization skills for easy deployment and scalability.
 
 ## AI Model Details
