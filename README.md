@@ -3,6 +3,7 @@
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Technologies Used](#technologies-used)
+- [Video Demo](#video-demo)
 - [Key Features](#key-features)
 - [AI Model Details](#ai-model-details)
   - [Image Captioning Model](#image-captioning-model)
@@ -20,6 +21,12 @@
 ## Project Overview
 
 CapFlow is a Chrome extension that uses the fine-tuned version of Microsoft's Florence 2 base model to generate descriptive captions for images on web pages and create relevant hashtags. 
+
+## Video Demo
+
+Check out our demo video to see CapFlow in action:
+
+[![CapFlow Demo](https://img.youtube.com/vi/9vuyXFFfgok/0.jpg)](https://youtu.be/9vuyXFFfgok "CapFlow Demo - Click to Watch!")
 
 ## Technologies Used
 
@@ -57,7 +64,7 @@ We checked the performance of these adapters, both individually and all possible
 
 ### Hashtag Generation Model
 
-The hashtag generation function in `app.py` uses KeyBERT, an unsupervised keyword extraction method that leverages BERT embeddings to identify keywords that best represent the underlying text. The process consists of three main steps:
+The hashtag generation function in `app.py` uses KeyBERT (Khan et al., 2022), an unsupervised keyword extraction method that leverages BERT embeddings to identify keywords that best represent the underlying text. The process consists of three main steps:
 
 1. Candidate keyword extraction: Uses Scikit-Learn's Count Vectorizer to obtain a list of candidate n-grams, ranking them based on their frequency in the original document.
 
@@ -226,9 +233,22 @@ The CapFlow extension should now be installed and ready to use.
 4. The extension will send the image to the backend for processing.
 5. View the generated caption and hashtags in the extension popup.
 
+## Resources
+• Third-Party Dataset Sources:
+  – DOCCI Dataset: https://huggingface.co/datasets/google/docci
+  – PixelproseDataset: https://huggingface.co/datasets/tomg-group-umd/pixelprose
+  – Recap DataComp Dataset: https://huggingface.co/datasets/UCSC-VLAA/Recap-DataComp-1B
+• Our Fine-tuned LoRA Adapters:
+  – DOCCIAdapter: https://huggingface.co/NikshepShetty/Florence-2-DOCCI-FT
+  – PixelproseAdapter: https://huggingface.co/NikshepShetty/Florence-2-pixelprose
+  – Recap DataComp Adapter: https://huggingface.co/NikshepShetty/Florence-2-Recap-DataComp
+• Third-Party Evaluation Datasets:
+  – DetailCaps-4870 (Caption Evaluation): https://huggingface.co/datasets/foundation-multimodal-models/DetailCaps-4870
+  – TechKeywordsTopicsSummary(HashtagEvaluation): https://huggingface.co/datasets/ilsilfverskiold/tech-keywords-topics-summary
 
 ## References
 
 1. Dong, H., Li, J., Wu, B., Wang, J., Zhang, Y. and Guo, H., 2024. Benchmarking and Improving Detail Image Caption. arXiv preprint arXiv:2405.19092.
 2. Hu, E.J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L. and Chen, W., 2021. Lora: Low-rank adaptation of large language models. arXiv preprint arXiv:2106.09685.
-3. Xiao, B., Wu, H., Xu, W., Dai, X., Hu, H., Lu, Y., Zeng, M., Liu, C. and Yuan, L., 2024. Florence-2: Advancing a unified representation for a variety of vision tasks. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 4818-4829).
+3. Khan, M. Q., Shahid, A., Uddin, M. I., Roman, M., Alharbi, A., Alosaimi, W., Almalki, J., & Alshahrani, S. M. (2022). Impact analysis of keyword extraction using contextual word embedding. PeerJ Computer Science, 8, e967. https://doi.org/10.7717/peerj-cs.967
+4. Xiao, B., Wu, H., Xu, W., Dai, X., Hu, H., Lu, Y., Zeng, M., Liu, C. and Yuan, L., 2024. Florence-2: Advancing a unified representation for a variety of vision tasks. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 4818-4829).
