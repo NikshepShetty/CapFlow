@@ -16,6 +16,7 @@
   - [Option 2: Local Setup with Virtual Environment](#option-2-local-setup-with-virtual-environment)
   - [Chrome Extension Setup](#chrome-extension-setup)
 - [Usage](#usage)
+- [Resources](#resources)
 - [References](#references)
 
 ## Project Overview
@@ -26,11 +27,17 @@ CapFlow is a Chrome extension that uses the fine-tuned version of Microsoft's Fl
 
 Check out our demo video to see CapFlow in action:
 
+## Demo
+
+Check out our demo video to see CapFlow in action:
+
 <div align="center">
-  <a href="https://www.youtube.com/watch?v=9vuyXFFfgok">
-    <img src="https://img.youtube.com/vi/9vuyXFFfgok/0.jpg" alt="CapFlow Demo Video" title="Watch CapFlow Demo">
+  <a href="https://www.youtube.com/watch?v=9vuyXFFfgok" target="_blank">
+    <img src="https://img.youtube.com/vi/9vuyXFFfgok/0.jpg" alt="CapFlow Demo Video" style="width:50%;">
+    <img src="https://github.com/user-attachments/assets/47b5905f-67a9-4c7d-a5a7-3905845dc9f2" alt="Play Button" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 64px; height: 64px;">
   </a>
 </div>
+
 
 ## Technologies Used
 
@@ -238,6 +245,7 @@ The CapFlow extension should now be installed and ready to use.
 5. View the generated caption and hashtags in the extension popup.
 
 ## Resources
+
 • Third-Party Dataset Sources:
   – DOCCI Dataset: https://huggingface.co/datasets/google/docci
   – PixelproseDataset: https://huggingface.co/datasets/tomg-group-umd/pixelprose
