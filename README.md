@@ -27,10 +27,6 @@ CapFlow is a Chrome extension that uses the fine-tuned version of Microsoft's Fl
 
 Check out our demo video to see CapFlow in action:
 
-## Demo
-
-Check out our demo video to see CapFlow in action:
-
 [Watch the demo video](https://youtu.be/9vuyXFFfgok)
 
 ## Technologies Used
@@ -241,15 +237,25 @@ The CapFlow extension should now be installed and ready to use.
 ## Resources
 
 • Third-Party Dataset Sources:
+
   – DOCCI Dataset: https://huggingface.co/datasets/google/docci
+  
   – PixelproseDataset: https://huggingface.co/datasets/tomg-group-umd/pixelprose
+  
   – Recap DataComp Dataset: https://huggingface.co/datasets/UCSC-VLAA/Recap-DataComp-1B
+  
 • Our Fine-tuned LoRA Adapters:
+
   – DOCCIAdapter: https://huggingface.co/NikshepShetty/Florence-2-DOCCI-FT
+  
   – PixelproseAdapter: https://huggingface.co/NikshepShetty/Florence-2-pixelprose
+  
   – Recap DataComp Adapter: https://huggingface.co/NikshepShetty/Florence-2-Recap-DataComp
+  
 • Third-Party Evaluation Datasets:
+
   – DetailCaps-4870 (Caption Evaluation): https://huggingface.co/datasets/foundation-multimodal-models/DetailCaps-4870
+  
   – TechKeywordsTopicsSummary(HashtagEvaluation): https://huggingface.co/datasets/ilsilfverskiold/tech-keywords-topics-summary
 
 ## References
