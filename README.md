@@ -27,7 +27,7 @@ CapFlow is a Chrome extension that uses the fine-tuned version of Microsoft's Fl
 - Backend: Flask (Python)
 - AI Models:
   - Image Captioning: Microsoft Florence-2-base-ft (230 million parameter Vision Language Model)
-  - Hashtag Generation: [Model details to be added soon]
+  - Hashtag Generation: KeyBERT
 - Containerization: Docker
 
 ## Key Features
@@ -36,7 +36,7 @@ CapFlow is a Chrome extension that uses the fine-tuned version of Microsoft's Fl
 2. **Flask Backend**: Hosts the AI models and provides an API for the extension.
 3. **Advanced AI Models**: 
    - Utilizes Microsoft's Florence-2-base-ft model with custom fine-tuned adapters for image captioning.
-   - [Caption to hashtag model details to be added soon]
+   - Implements KeyBERT for efficient hashtag generation from captions.
 4. **Docker Integration**: Demonstrates containerization skills for easy deployment and scalability.
 
 ## AI Model Details
@@ -57,9 +57,17 @@ We checked the performance of these adapters, both individually and all possible
 
 ### Hashtag Generation Model
 
-The hashtag generation function in `app.py` takes the captions produced by the image captioning model and generates three relevant hashtags. 
+The hashtag generation function in app.py uses KeyBERT, an unsupervised keyword extraction method that leverages BERT embeddings to identify keywords that best represent the underlying text. The process consists of three main steps:
 
-[Implementation details to be added]
+Candidate keyword extraction: Uses Scikit-Learn's Count Vectorizer to obtain a list of candidate n-grams, ranking them based on their frequency in the original document.
+BERT embedding: Both the input text (image caption) and the n-gram candidates are transformed into numeric data using the BERT model.
+Similarity calculation: KeyBERT identifies n-gram candidates that are similar to the document using cosine similarity. The candidates most similar to the document are more likely to be suitable hashtags expressing the document's content.
+
+The similarity is calculated using the following formula:
+$$ Similarity = COS(W \cdot S) $$
+Where W is the word's word embedding vector and S is the sentence embedding vector.
+
+This approach differs from traditional frequency-based methods by focusing on the relevance between words in the context of the sentence, utilizing the semantic and contextual information of words and phrases in the extraction process.
 
 ## Performance Metrics
 
@@ -126,7 +134,28 @@ For the speed-to-performance ratio, our model performs best out of all the model
 
 ### Hashtag Generation Model
 
-[Evaluation metrics to be added]
+### Hashtag Generation Model
+
+We evaluated the performance of our KeyBERT-based hashtag generation model against other methods, including Regular BERT, YAKE (Yet Another Keyword Extractor), and Gemma-2-2B-it. The evaluation metrics used were Precision, Recall, F1-score, and average processing time. Here are the results:
+
+| Method | Precision | Recall | F1-score | Avg Time (s) |
+|--------|-----------|--------|----------|--------------|
+| KeyBERT | 0.6132 | 0.6105 | 0.5932 | 0.0201 |
+| Regular BERT | 0.3392 | 0.3222 | 0.3199 | 0.0107 |
+| YAKE | 0.5126 | 0.5068 | 0.4939 | 0.0064 |
+| Gemma-2-2B-it | 0.4808 | 0.4239 | 0.4537 | 2.6293 |
+
+KeyBERT demonstrated the highest precision, recall, and F1-score, while maintaining a relatively fast processing time. This makes it well-suited for real-time applications like our Chrome extension. YAKE proved to be the fastest method but with moderate performance, while Gemma-2-2B-it showed decent performance but with significantly higher processing time, making it less suitable for our use case.
+
+![Precision-Recall Performance of Hashtag Generation Methods](https://github.com/user-attachments/assets/bfd2aaed-7908-4350-ad06-d65cac926ddb)
+
+The precision-recall trade-off, visualized above, illustrates KeyBERT's superior performance. KeyBERT's data point is positioned furthest from the origin and closest to the top-right corner, indicating its optimal balance between precision and recall. YAKE follows as the second-best performer, while Gemma-2-2B-it and Regular BERT show lower performance in both precision and recall.
+
+![Speed-Accuracy Trade-off in Hashtag Generation Methods (Log-Scaled)](https://github.com/user-attachments/assets/1ea83791-793f-474e-b43e-e342c6b16287)
+
+This visualization provides insight into the speed-accuracy trade-off among these methods. The x-axis represents the average processing time on a logarithmic scale, while the y-axis shows the F1-score. This reveals that while KeyBERT achieves the highest F1-score with a relatively low processing time, making it an excellent choice for real-time applications. YAKE offers the fastest processing time with moderate accuracy. Gemma-2-2B-it, despite its more complex architecture, doesn't outperform KeyBERT and is significantly slower, making it less suitable for a browser extension. Regular BERT's position on this graph underscores its suboptimal performance, offering neither a speed nor an accuracy advantage.
+
+Based on these results, we concluded that KeyBERT provides the most effective solution for our hashtag generation task within the context of a browser extension. Its superior accuracy in generating relevant hashtags, combined with its relatively fast processing time, makes it well-suited for real-time applications.
 
 
 ## Setup and Installation
