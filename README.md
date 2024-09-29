@@ -57,14 +57,18 @@ We checked the performance of these adapters, both individually and all possible
 
 ### Hashtag Generation Model
 
-The hashtag generation function in app.py uses KeyBERT, an unsupervised keyword extraction method that leverages BERT embeddings to identify keywords that best represent the underlying text. The process consists of three main steps:
+The hashtag generation function in `app.py` uses KeyBERT, an unsupervised keyword extraction method that leverages BERT embeddings to identify keywords that best represent the underlying text. The process consists of three main steps:
 
-Candidate keyword extraction: Uses Scikit-Learn's Count Vectorizer to obtain a list of candidate n-grams, ranking them based on their frequency in the original document.
-BERT embedding: Both the input text (image caption) and the n-gram candidates are transformed into numeric data using the BERT model.
-Similarity calculation: KeyBERT identifies n-gram candidates that are similar to the document using cosine similarity. The candidates most similar to the document are more likely to be suitable hashtags expressing the document's content.
+1. Candidate keyword extraction: Uses Scikit-Learn's Count Vectorizer to obtain a list of candidate n-grams, ranking them based on their frequency in the original document.
+
+2. BERT embedding: Both the input text (image caption) and the n-gram candidates are transformed into numeric data using the BERT model.
+
+3. Similarity calculation: KeyBERT identifies n-gram candidates that are similar to the document using cosine similarity. The candidates most similar to the document are more likely to be suitable hashtags expressing the document's content.
 
 The similarity is calculated using the following formula:
+
 $$ Similarity = COS(W \cdot S) $$
+
 Where W is the word's word embedding vector and S is the sentence embedding vector.
 
 This approach differs from traditional frequency-based methods by focusing on the relevance between words in the context of the sentence, utilizing the semantic and contextual information of words and phrases in the extraction process.
@@ -131,8 +135,6 @@ For the speed-to-performance ratio, our model performs best out of all the model
 | Phi-3-vision        | 0.5509 | 7.358 |
 | Base Florence model | 0.5458 | 0.523 |
 | Our Model      | 0.5757 | 0.688 |
-
-### Hashtag Generation Model
 
 ### Hashtag Generation Model
 
