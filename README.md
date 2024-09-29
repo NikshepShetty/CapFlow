@@ -26,9 +26,11 @@ CapFlow is a Chrome extension that uses the fine-tuned version of Microsoft's Fl
 
 Check out our demo video to see CapFlow in action:
 
-<a href="https://youtu.be/9vuyXFFfgok" target="_blank">
- <img src="https://img.youtube.com/vi/9vuyXFFfgok/maxresdefault.jpg" alt="CapFlow Demo" width="480" height="270" border="10" />
-</a>
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=9vuyXFFfgok">
+    <img src="https://img.youtube.com/vi/9vuyXFFfgok/0.jpg" alt="CapFlow Demo Video" title="Watch CapFlow Demo">
+  </a>
+</div>
 
 ## Technologies Used
 
