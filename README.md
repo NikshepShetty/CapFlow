@@ -31,13 +31,12 @@ Check out our demo video to see CapFlow in action:
 
 Check out our demo video to see CapFlow in action:
 
-<div align="center">
+<div align="center" style="position: relative; width: 50%; margin: 0 auto;">
   <a href="https://www.youtube.com/watch?v=9vuyXFFfgok" target="_blank">
-    <img src="https://img.youtube.com/vi/9vuyXFFfgok/0.jpg" alt="CapFlow Demo Video" style="width:50%;">
+    <img src="https://img.youtube.com/vi/9vuyXFFfgok/0.jpg" alt="CapFlow Demo Video" style="width: 100%;">
     <img src="https://github.com/user-attachments/assets/47b5905f-67a9-4c7d-a5a7-3905845dc9f2" alt="Play Button" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 64px; height: 64px;">
   </a>
 </div>
-
 
 ## Technologies Used
 
