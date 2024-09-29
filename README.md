@@ -21,7 +21,7 @@
 
 ## Project Overview
 
-CapFlow is a Chrome extension that uses the fine-tuned version of Microsoft's Florence 2 base model to generate descriptive captions for images on web pages and create relevant hashtags. 
+CapFlow is a Chrome extension that uses the fine-tuned version of Microsoft's Florence 2 base model to generate descriptive captions for images on web pages and KeyBERT to create relevant hashtags. 
 
 ## Video Demo
 
@@ -236,27 +236,27 @@ The CapFlow extension should now be installed and ready to use.
 
 ## Resources
 
-• Third-Party Dataset Sources:
+Third-Party Dataset Sources:
 
-  – DOCCI Dataset: https://huggingface.co/datasets/google/docci
+1. DOCCI Dataset: https://huggingface.co/datasets/google/docci
   
-  – PixelproseDataset: https://huggingface.co/datasets/tomg-group-umd/pixelprose
+2. PixelproseDataset: https://huggingface.co/datasets/tomg-group-umd/pixelprose
   
-  – Recap DataComp Dataset: https://huggingface.co/datasets/UCSC-VLAA/Recap-DataComp-1B
+3. Recap DataComp Dataset: https://huggingface.co/datasets/UCSC-VLAA/Recap-DataComp-1B
   
-• Our Fine-tuned LoRA Adapters:
+Our Fine-tuned LoRA Adapters:
 
-  – DOCCIAdapter: https://huggingface.co/NikshepShetty/Florence-2-DOCCI-FT
+1. DOCCIAdapter: https://huggingface.co/NikshepShetty/Florence-2-DOCCI-FT
   
-  – PixelproseAdapter: https://huggingface.co/NikshepShetty/Florence-2-pixelprose
+2. PixelproseAdapter: https://huggingface.co/NikshepShetty/Florence-2-pixelprose
   
-  – Recap DataComp Adapter: https://huggingface.co/NikshepShetty/Florence-2-Recap-DataComp
+3. Recap DataComp Adapter: https://huggingface.co/NikshepShetty/Florence-2-Recap-DataComp
   
-• Third-Party Evaluation Datasets:
+Third-Party Evaluation Datasets:
 
-  – DetailCaps-4870 (Caption Evaluation): https://huggingface.co/datasets/foundation-multimodal-models/DetailCaps-4870
+1. DetailCaps-4870 (Caption Evaluation): https://huggingface.co/datasets/foundation-multimodal-models/DetailCaps-4870
   
-  – TechKeywordsTopicsSummary(HashtagEvaluation): https://huggingface.co/datasets/ilsilfverskiold/tech-keywords-topics-summary
+2. TechKeywordsTopicsSummary(HashtagEvaluation): https://huggingface.co/datasets/ilsilfverskiold/tech-keywords-topics-summary
 
 ## References
 
